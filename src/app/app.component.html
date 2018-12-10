@@ -1,3 +1,7 @@
-{{story[story["entry"]].text}}
+<p id="story-text">{{storyText}}</p>
+
+<div id="story-options" *ngFor="let opt of storyOptions">
+	<button (click)="selectOption(opt.value)">{{opt.text}}</button>
+</div>
 
 <router-outlet></router-outlet>

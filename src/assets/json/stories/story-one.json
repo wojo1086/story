@@ -1,6 +1,125 @@
 {
-	"entry": "1",
-	"1": {
-		"text": "This is entry point one."
-	}
+    "entry": "1",
+    "1": {
+        "text": "You awaken on a wooden floor in a small room. Placing your hands on the floor, you push yourself into a standing position. The walls are bare and there's no furniture. There is, however, a single door.",
+        "options": [
+            {
+                "text": "Go through the door",
+                "value": "2"
+            }
+        ]
+    },
+    "2": {
+        "text": "You walk into a hallway with four doors, two on the left and two on the right. It's dark, but you can faintly see a handrail to what you think are some stairs.",
+        "options": [
+            {
+                "text": "Enter the first room on the left.",
+                "value": "3"
+            },
+            {
+                "text": "Enter the second room on the left.",
+                "value": "4"
+            },
+            {
+                "text": "Enter the first room on the right.",
+                "value": "5"
+            },
+            {
+                "text": "Enter the second room on the right.",
+                "value": "6"
+            }
+        ]
+    },
+    "3": {
+        "text": "You wiggle the handle, but the door seems locked.",
+        "options": [
+            {
+                "text": "Enter the second room on the left.",
+                "value": "4"
+            },
+            {
+                "text": "Enter the first room on the right.",
+                "value": "5"
+            },
+            {
+                "text": "Enter the second room on the right.",
+                "value": "6"
+            },
+            {
+                "text": "Go back into the room you woke up in.",
+                "value": "7"
+            }
+        ]
+    },
+    "4": {
+        "text": "You walk into another empty room, except this one has a window, barricaded with bars.",
+        "options": [
+            {
+                "text": "Go back into the hallway.",
+                "value": "2"
+            }
+        ]
+    },
+    "5": {
+        "text": "You grab the handle and give it a jiggle. It seems locked. You could try giving it a shove, but you don't know who else is in the house and too much noise could be a bad thing.",
+        "options": [
+            {
+                "text": "Give it a shove.",
+                "value": "8"
+            },
+            {
+                "text": "Leave the door alone.",
+                "value": "2"
+            }
+        ]
+    },
+    "6": {
+        "text": "You wiggle the handle, but the door seems locked.",
+        "options": [
+            {
+                "text": "Enter the first room on the left.",
+                "value": "3"
+            },
+            {
+                "text": "Enter the first room on the right.",
+                "value": "5"
+            },
+            {
+                "text": "Enter the second room on the right.",
+                "value": "6"
+            },
+            {
+                "text": "Go back into the room you woke up in.",
+                "value": "7"
+            }
+        ]
+    },
+    "7": {
+        "text": "You are back in the room where you started.",
+        "options": [
+            {
+                "text": "Go back into the hallway.",
+                "value": "2"
+            }
+        ]
+    },
+    "8": {
+        "text": "You take a step back and lunge at the door with your shoulder. It flings open with a thud. In the middle of the floor is a small blanket and a pillow. It looks like someone sleeps here. In the far, right corner is a wooden dresser.",
+        "options": [
+            {
+                "text": "Open the top drawer of the dresser.",
+                "value": "9"
+            },
+            {
+                "text": "Open the middle door of the dresser.",
+                "value": "9"
+            }
+        ]
+    },
+    "9": {
+        "text": "You don't find anything.",
+        "options": {
+
+        }
+    }
 }
