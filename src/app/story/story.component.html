@@ -1,0 +1,7 @@
+<a routerLink="builder">Go to builder</a>
+
+<p id="story-text">{{storyText}}</p>
+
+<div id="story-options" *ngFor="let opt of storyOptions">
+	<button (click)="selectOption(opt.value)">{{opt.text}}</button>
+</div>

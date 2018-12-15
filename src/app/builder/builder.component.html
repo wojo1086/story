@@ -1,0 +1,58 @@
+<div class="header">
+	<div>
+		<a routerLink="">Go to story</a>
+	</div>
+	<div class="entry-text">
+		<span>Entry:</span>
+		<select [(ngModel)]="entry">
+			<option *ngFor="let opt of story | keyvalue">{{opt.key}}</option>
+		</select>
+	</div>
+</div>
+
+<div>
+	<button (click)="saveJson()">Save</button>
+</div>
+
+<div class="story-list">
+	<div *ngFor="let opt of story | keyvalue">
+		<div *ngIf="opt.value.editing">
+			<div class="edit-options">
+				<div class="entry-name"><strong>{{opt.key}}</strong></div>
+				<div class="edit-buttons">
+					<span (click)="saveEntry(opt.key)">Save</span>
+					<span (click)="deleteEntry(opt.key)">Delete</span>
+				</div>
+			</div>
+
+			<div>{{opt.value.text}}</div>
+
+			<ul>
+				<li *ngFor="let choice of opt.value.optionsEdit">
+					<select [(ngModel)]="choice.value">
+						<option *ngFor="let opt of story | keyvalue">{{opt.key}}</option>
+					</select>
+					<input type="text" [value]="choice.text" ([ngModel])="choice.text">
+				</li>
+			</ul>
+		</div>
+
+		<div *ngIf="!opt.value.editing">
+			<div class="edit-options">
+				<div class="entry-name"><strong>{{opt.key}}</strong></div>
+				<div class="edit-buttons">
+					<span (click)="editEntry(opt.key)">Edit</span>
+				</div>
+			</div>
+
+			<div>{{opt.value.text}}</div>
+
+			<ul>
+				<li *ngFor="let choice of opt.value.options">
+					<strong>{{choice.value}}</strong> {{choice.text}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+

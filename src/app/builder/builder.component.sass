@@ -1,0 +1,39 @@
+.header
+	div
+		display: inline-block
+		width: 50%
+
+		&.entry-text
+			text-align: right
+
+			span
+				padding-right: 10px
+
+.story-list
+	margin-top: 16px
+
+	& > div
+		margin: 5px 0
+		padding: 5px
+		font-size: 12px
+
+		&:nth-child(odd)
+			background-color: rgba(200, 225, 255, .4)
+
+		.edit-options
+			div
+				display: inline-block
+				width: 50%
+
+				&.edit-buttons
+					text-align: right
+
+					span
+						cursor: pointer
+						margin: 0 5px
+
+		ul
+			li
+				list-style-type: none
+				input
+					width: 60%

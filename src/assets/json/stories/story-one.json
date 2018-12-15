@@ -118,8 +118,6 @@
     },
     "9": {
         "text": "You don't find anything.",
-        "options": {
-
-        }
+        "options": []
     }
 }

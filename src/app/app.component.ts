@@ -1,33 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {StoryService} from './story.service';
-import {IStoryOptions} from './interfaces/story';
+import {Component} from '@angular/core';
+
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.sass'],
-    providers: [StoryService]
+    styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit {
-    story: Object;
-    storyText: string = '';
-    storyOptions: IStoryOptions[] = [];
+export class AppComponent {
+    constructor() {
 
-    constructor(private _storyService: StoryService) {
-
-    }
-
-    ngOnInit() {
-        this._storyService.getStories().subscribe(res => {
-            console.log(res);
-            this.story = res;
-            this.storyText = res[res['entry']].text;
-            this.storyOptions = res[res['entry']].options;
-        });
-    }
-
-    selectOption(val: string): void {
-        this.storyText = this.story[val].text;
-        this.storyOptions = this.story[val].options;
     }
 }
