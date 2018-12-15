@@ -7,11 +7,7 @@ import * as textEncoding from 'text-encoding';
 })
 export class S3Service {
     readonly FOLDER = 'stories/';
-    private bucket = new S3({
-        accessKeyId: 'AKIAJKYUQZHSJABHZPAQ',
-        secretAccessKey: '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',
-        region: 'us-east-1'
-    });
+
     private TextDecoder = textEncoding.TextDecoder;
 
     constructor() {
