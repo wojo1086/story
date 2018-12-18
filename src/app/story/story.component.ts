@@ -17,7 +17,8 @@ export class StoryComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._s3Service.loadStories().then(res => {
+        this._s3Service.loadStories().subscribe(res => {
+            console.log(res);
             this.story = res;
             this.storyText = res[res['entry']].text;
             this.storyOptions = res[res['entry']].options;

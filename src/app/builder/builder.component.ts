@@ -9,6 +9,7 @@ import {S3Service} from '../services/s3.service';
 export class BuilderComponent implements OnInit {
     entry: string = '';
     story = {};
+    tim;
     entryOptions: string[] = [];
 
     constructor(private _s3Service: S3Service) {
@@ -20,15 +21,19 @@ export class BuilderComponent implements OnInit {
     }
 
     saveJson(): void {
-        console.log(this.story);
-        this.story['entry'] = this.entry;
-        this._s3Service.uploadJson(this.story);
+        const story = JSON.parse(JSON.stringify(this.story));
+        story['entry'] = this.entry;
+        this._s3Service.uploadJson(story).subscribe(res => {
+            this.getJson();
+        });
     }
 
     getJson(): void {
-        this._s3Service.loadStories().then(res => {
+        this._s3Service.loadStories().subscribe(res => {
+            console.log(res);
             this.entry = res.entry;
             delete res.entry;
+            this.entryOptions = Object.keys(res);
             this.story = JSON.parse(JSON.stringify(res));
         });
     }
@@ -43,7 +48,13 @@ export class BuilderComponent implements OnInit {
     }
 
     saveEntry(key): void {
+        this.story[key].options = this.story[key].optionsEdit;
+        delete this.story[key].optionsEdit;
         this.story[key].editing = false;
+    }
+
+    newOption(key): void {
+        this.story[key].options.unshift({text: '', value: ''});
     }
 
 }

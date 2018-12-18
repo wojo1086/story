@@ -5,7 +5,7 @@
 	<div class="entry-text">
 		<span>Entry:</span>
 		<select [(ngModel)]="entry">
-			<option *ngFor="let opt of story | keyvalue">{{opt.key}}</option>
+			<option *ngFor="let opt of entryOptions">{{opt}}</option>
 		</select>
 	</div>
 </div>
@@ -20,7 +20,8 @@
 			<div class="edit-options">
 				<div class="entry-name"><strong>{{opt.key}}</strong></div>
 				<div class="edit-buttons">
-					<span (click)="saveEntry(opt.key)">Save</span>
+					<span (click)="saveEntry(opt.key)">Done</span>
+					<span (click)="newOption(opt.key)">New Option</span>
 					<span (click)="deleteEntry(opt.key)">Delete</span>
 				</div>
 			</div>
@@ -28,11 +29,12 @@
 			<div>{{opt.value.text}}</div>
 
 			<ul>
-				<li *ngFor="let choice of opt.value.optionsEdit">
+				<li *ngFor="let choice of opt.value.options">
 					<select [(ngModel)]="choice.value">
 						<option *ngFor="let opt of story | keyvalue">{{opt.key}}</option>
 					</select>
 					<input type="text" [value]="choice.text" ([ngModel])="choice.text">
+					{{choice.text}}
 				</li>
 			</ul>
 		</div>
