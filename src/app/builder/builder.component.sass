@@ -1,42 +1,28 @@
-.header
-	div
-		display: inline-block
-		width: 50%
+.save-button
+	padding: 5px
 
-		&.entry-text
-			text-align: right
+.entry-options
+	text-align: right
 
-			span
-				padding-right: 10px
+.edit-form
+	padding: 5px
+
+	.edit-buttons
+		text-align: right
+
+		button
+			margin-left: 5px
 
 .story-list
-	margin-top: 16px
+	padding: 5px
 
-	& > div
-		margin: 5px 0
-		padding: 5px
-		font-size: 12px
+	mat-card
+		margin-bottom: 10px
 
-		&:nth-child(odd)
-			background-color: rgba(200, 225, 255, .4)
+		mat-card-content
+			font-size: 12px
 
-		.edit-options
-			div
-				display: inline-block
-				width: 50%
+		mat-card-footer
 
-				&.edit-buttons
-					text-align: right
-
-					span
-						cursor: pointer
-						margin: 0 5px
-
-						&:hover
-							text-decoration: underline
-
-		ul
-			li
-				list-style-type: none
-				input
-					width: 60%
+			button:last-child
+				float: right

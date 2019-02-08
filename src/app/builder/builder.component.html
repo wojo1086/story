@@ -1,60 +1,82 @@
-<div class="header">
-	<div>
-		<a routerLink="">Go to story</a>
-	</div>
-	<div class="entry-text">
-		<span>Entry:</span>
-		<select [(ngModel)]="entry">
-			<option *ngFor="let opt of entryOptions">{{opt}}</option>
-		</select>
-	</div>
-</div>
-
-<div>
-	<button (click)="saveJson()">Save</button>
-</div>
-
-<div class="story-list">
-	<div *ngFor="let opt of story | keyvalue">
-		<div *ngIf="opt.value.editing">
-			<div class="edit-options">
-				<div class="entry-name"><strong>{{opt.key}}</strong></div>
-				<div class="edit-buttons">
-					<span (click)="saveEntry(opt.key)">Done</span>
-					<span (click)="newOption(opt.key)">New Option</span>
-					<span (click)="deleteEntry(opt.key)">Delete</span>
-				</div>
+<div fxLayout="row">
+	<div fxFlex>
+		<div class="save-button" fxLayout="row">
+			<div fxFlex>
+				<button mat-raised-button color="primary" (click)="saveJson()">Save</button>
+				<button mat-raised-button color="accent" (click)="getJson()">Revert</button>
 			</div>
-
-			<div>{{opt.value.text}}</div>
-
-			<ul>
-				<li *ngFor="let choice of opt.value.options">
-					<select [(ngModel)]="choice.value">
-						<option *ngFor="let opt of story | keyvalue">{{opt.key}}</option>
-					</select>
-					<input type="text" [value]="choice.text" ([ngModel])="choice.text">
-					{{choice.text}}
-				</li>
-			</ul>
+			<div fxFlex class="entry-options">
+				<mat-form-field>
+					<mat-select placeholder="Entry Point" [(value)]="entry">
+						<mat-option *ngFor="let opt of entryOptions" [value]="opt">{{opt}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
 		</div>
 
-		<div *ngIf="!opt.value.editing">
-			<div class="edit-options">
-				<div class="entry-name"><strong>{{opt.key}}</strong></div>
-				<div class="edit-buttons">
-					<span (click)="editEntry(opt.key)">Edit</span>
+		<form class="edit-form" name="storyEditForm" [formGroup]="storyEditForm">
+			<div fxLayout="row">
+				<div fxFlex>
+					<mat-form-field>
+						<input matInput placeholder="Point" formControlName="point">
+					</mat-form-field>
+				</div>
+				<div fxFlex class="edit-buttons">
+					<button mat-raised-button (click)="newOption()">Add Option</button>
+					<button mat-raised-button (click)="clearEdit()">Cancel</button>
+					<button mat-raised-button *ngIf="editing" color="accent" (click)="deleteEntry()">Delete</button>
+					<button mat-raised-button color="primary" (click)="saveEdit()">Submit</button>
 				</div>
 			</div>
-
-			<div>{{opt.value.text}}</div>
-
-			<ul>
-				<li *ngFor="let choice of opt.value.options">
-					<strong>{{choice.value}}</strong> {{choice.text}}
-				</li>
-			</ul>
+			<div fxLayout="row">
+				<div fxFlex>
+					<mat-form-field class="full-width">
+						<textarea matInput placeholder="Text" formControlName="text"></textarea>
+					</mat-form-field>
+				</div>
+			</div>
+			<div formArrayName="options" *ngFor="let item of storyEditForm.controls['options'].controls; let i = index">
+				<div fxLayout="row" [formGroupName]="i">
+					<div fxFlex>
+						<mat-form-field>
+							<mat-select formControlName="value" placeholder="Destination">
+								<mat-option *ngFor="let opt of entryOptions" [value]="opt">{{opt}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div fxFlex>
+						<mat-form-field class="full-width">
+							<input matInput type="text" placeholder="Text" formControlName="text">
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div fxFlex>
+		<div class="story-list" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+			<mat-card fxFlex="200px" *ngFor="let opt of story; let i = index">
+				<mat-card-header>
+					<mat-card-title>
+						{{opt.point}}
+					</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<p>
+						{{opt.text}}
+					</p>
+				</mat-card-content>
+				<mat-card-footer>
+					<button mat-button (click)="editEntry(opt)">Edit</button>
+					<button mat-stroked-button color="accent"
+					        [matBadge]="opt.options.length"
+					        matBadgePosition="before"
+					        matBadgeColor="primary"
+					        (click)="showOptions(opt.options)"
+					        matBadgeOverlap="true">Options
+					</button>
+				</mat-card-footer>
+			</mat-card>
 		</div>
 	</div>
 </div>
-
